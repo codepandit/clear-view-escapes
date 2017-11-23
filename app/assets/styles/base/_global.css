@@ -8,3 +8,11 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+* {         /* Astrix* means will select every single elements of the page*/
+  box-sizing: border-box;
+}
+
+a {
+  color: $mainOrange;
+}
