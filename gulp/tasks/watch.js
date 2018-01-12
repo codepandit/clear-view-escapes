@@ -16,7 +16,11 @@ gulp.task("watch", function(){
   });
 
   watch ("./app/assets/styles/**/*.css", function(){
-      gulp.start("cssInject");              //gulp.start("styles");
+    gulp.start("cssInject");              //gulp.start("styles");
+  });
+
+  watch("./app/assets/scripts/**/*.js", function() {
+    gulp.start("scriptsRefresh");
   });
 
 });
@@ -25,4 +29,8 @@ gulp.task("watch", function(){
 gulp.task("cssInject", ["styles"], function(){  //[] means dependencies, cssInject will let styles complete it task before it runs itself
   return gulp.src("./app/temp/styles/styles.css")
     .pipe(browserSync.stream());
+});
+
+gulp.task("scriptsRefresh", ["scripts"], function() {
+  browserSync.reload();
 });
