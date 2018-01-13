@@ -1,4 +1,3 @@
-
 body {
   font-family: 'Roboto', sans-serif;
   color: #333;
@@ -9,7 +8,7 @@ img {
   height: auto;
 }
 
-* {         /* Astrix* means will select every single elements of the page*/
+* {
   box-sizing: border-box;
 }
 
