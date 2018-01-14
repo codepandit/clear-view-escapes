@@ -1,36 +1,35 @@
-var gulp = require("gulp");                 //var gulp = , watch = , postcss = ,
-var watch = require("gulp-watch");          //autoprefixer = , you don't have to
-var browserSync = require("browser-sync").create(); //declare new var all the time
+var gulp = require('gulp'),
+watch = require('gulp-watch'),
+browserSync = require('browser-sync').create();
 
-gulp.task("watch", function(){
+gulp.task('watch', function() {
 
   browserSync.init({
-    notify: false,      //remove the pop up notification of cssInject in browser
+    notify: false,
     server: {
       baseDir: "app"
     }
   });
 
-  watch ("./app/index.html", function(){
+  watch('./app/index.html', function() {
     browserSync.reload();
   });
 
-  watch ("./app/assets/styles/**/*.css", function(){
-    gulp.start("cssInject");              //gulp.start("styles");
+  watch('./app/assets/styles/**/*.css', function() {
+    gulp.start('cssInject');
   });
 
-  watch("./app/assets/scripts/**/*.js", function() {
-    gulp.start("scriptsRefresh");
-  });
+  watch('./app/assets/scripts/**/*.js', function() {
+    gulp.start('scriptsRefresh');
+  })
 
 });
 
-
-gulp.task("cssInject", ["styles"], function(){  //[] means dependencies, cssInject will let styles complete it task before it runs itself
-  return gulp.src("./app/temp/styles/styles.css")
+gulp.task('cssInject', ['styles'], function() {
+  return gulp.src('./app/temp/styles/styles.css')
     .pipe(browserSync.stream());
 });
 
-gulp.task("scriptsRefresh", ["scripts"], function() {
+gulp.task('scriptsRefresh', ['scripts'], function() {
   browserSync.reload();
 });
